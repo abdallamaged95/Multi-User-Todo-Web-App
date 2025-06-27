@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="init-roles" author="abdalla maged">
+        <comment>Initialize the roles table with default roles</comment>
+        <insert tableName="ROLES">
+            <column name="ID" valueNumeric="1"/>
+            <column name="ROLE" value="USER"/>
+        </insert>
+        <insert tableName="ROLES">
+            <column name="ID" valueNumeric="2"/>
+            <column name="ROLE" value="ADMIN"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="init-user1" author="abdalla maged">
+        <comment>Initialize the user table with default admin user</comment>
+            <sql>
+                INSERT INTO USERS (ID, USERNAME, EMAIL, PASSWORD)
+                VALUES (nextval('SEQ_USERS'), 'abdalla', 'abdalla.maged95@gmail.com', '$2a$12$0hPwqaepGzwlcW2Y.gFY/ObE.4zH4gpckq9vPHDgTxIpmRkMnrQfq');
+            </sql>
+<!--        <insert tableName="USERS">-->
+<!--            <column name="ID" valueComputed="SEQ_USERS.NEXTVAL"/>-->
+<!--            <column name="USERNAME" value="abdalla"/>-->
+<!--            &lt;!&ndash; Password is 'password'&ndash;&gt;-->
+<!--            <column name="PASSWORD" value="$2a$12$0hPwqaepGzwlcW2Y.gFY/ObE.4zH4gpckq9vPHDgTxIpmRkMnrQfq"/>-->
+<!--            <column name="EMAIL" value="abdalla.maged95@gmail.com"/>-->
+<!--        </insert>-->
+
+        <!-- assign 'USER' role -->
+        <insert tableName="USER_ROLES">
+            <column name="USER_ID" valueNumeric="1"/>
+            <column name="ROLE_ID" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="init-user2" author="abdalla maged">
+            <sql>
+                INSERT INTO USERS (ID, USERNAME, EMAIL, PASSWORD)
+                VALUES (nextval('SEQ_USERS'), 'admin', 'admin@example.com', '$2a$12$0hPwqaepGzwlcW2Y.gFY/ObE.4zH4gpckq9vPHDgTxIpmRkMnrQfq');
+            </sql>
+<!--        <insert tableName="USERS">-->
+<!--            <column name="ID" valueComputed="SEQ_USERS.NEXTVAL"/>-->
+<!--            <column name="USERNAME" value="admin"/>-->
+<!--            &lt;!&ndash; Password is 'password'&ndash;&gt;-->
+<!--            <column name="PASSWORD" value="$2a$12$0hPwqaepGzwlcW2Y.gFY/ObE.4zH4gpckq9vPHDgTxIpmRkMnrQfq"/>-->
+<!--            <column name="EMAIL" value="admin@gmail.com"/>-->
+<!--        </insert>-->
+
+        <!-- assign 'USER' role -->
+        <insert tableName="USER_ROLES">
+            <column name="USER_ID" valueNumeric="2"/>
+            <column name="ROLE_ID" valueNumeric="1"/>
+        </insert>
+        <!-- assign 'ADMIN' role -->
+        <insert tableName="USER_ROLES">
+            <column name="USER_ID" valueNumeric="2"/>
+            <column name="ROLE_ID" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- TABLE CREATION -->
+    <changeSet id="01-tables-users" author="abdalla">
+        <createTable tableName="USERS">
+            <column name="ID" type="DECIMAL(10,0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_AT" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01-tables-roles" author="abdalla">
+        <createTable tableName="ROLES">
+            <column name="ID" type="DECIMAL(10,0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ROLE" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_AT" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01-tables-tasks" author="abdalla">
+        <createTable tableName="TASKS">
+            <column name="TASK_ID" type="DECIMAL(10,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="DECIMAL(10,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="TEXT"/>
+            <column name="DUE_DATE" type="DATE"/>
+            <column name="STATUS" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_AT" type="TIMESTAMP"/>
+        </createTable>
+        <addPrimaryKey tableName="TASKS"
+                       columnNames="TASK_ID,USER_ID"
+                       constraintName="PK_TASKS"/>
+    </changeSet>
+
+    <changeSet id="01-tables-user_roles" author="abdalla">
+        <createTable tableName="USER_ROLES">
+            <column name="USER_ID" type="DECIMAL(10,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="DECIMAL(10,0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

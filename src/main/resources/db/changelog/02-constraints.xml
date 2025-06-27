@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!-- CONSTRAINTS -->
+    <changeSet id="02-constraints-users" author="abdalla">
+        <addUniqueConstraint tableName="USERS"
+                             columnNames="USERNAME"
+                             constraintName="UQ_USERS_USERNAME"/>
+
+        <addUniqueConstraint tableName="USERS"
+                             columnNames="EMAIL"
+                             constraintName="UQ_USERS_EMAIL"/>
+    </changeSet>
+    <changeSet id="02-constraints-tasks" author="abdalla">
+        <addForeignKeyConstraint baseTableName="TASKS"
+                                 baseColumnNames="USER_ID"
+                                 constraintName="FK_TASKS_USER"
+                                 referencedTableName="USERS"
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="02-constraints-user_roles" author="abdalla">
+        <addPrimaryKey tableName="USER_ROLES"
+                       columnNames="USER_ID,ROLE_ID"
+                       constraintName="PK_USER_ROLES"/>
+
+        <addForeignKeyConstraint baseTableName="USER_ROLES"
+                                 baseColumnNames="ROLE_ID"
+                                 constraintName="FK_USER_ROLES_ROLE"
+                                 referencedTableName="ROLES"
+                                 referencedColumnNames="ID"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="USER_ROLES"
+                                 baseColumnNames="USER_ID"
+                                 constraintName="FK_USER_ROLES_USER"
+                                 referencedTableName="USERS"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+    
+    <changeSet id="02-constraints-roles" author="abdalla">
+        <addUniqueConstraint tableName="ROLES"
+                             columnNames="ROLE"
+                             constraintName="UQ_ROLES_ROLE"/>
+    </changeSet>
+</databaseChangeLog>
