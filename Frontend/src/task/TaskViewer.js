@@ -1,29 +1,32 @@
-import {
-  Calendar,
-  Clock,
-  CheckCircle,
-  AlertCircle,
-  Circle,
-} from "lucide-react";
+import { Calendar, CheckCircle, Circle } from "lucide-react";
 import { useState } from "react";
 import TaskEditor from "./TaskEditor";
+import "./tasks.css";
+import { ApiService } from "../api.js";
 
-function TaskViewer({ ...task }) {
+function TaskViewer({ task, handleDelete }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [taskData, setTaskData] = useState(task);
+  const [taskData, setTaskData] = useState({ ...task });
 
   const statusConfig = getStatusConfig(taskData.status);
   const StatusIcon = statusConfig.icon;
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = (updatedTask) => {
+  const handleSave = async (updatedTask) => {
     setTaskData(updatedTask);
     setIsEditing(false);
-    // Here you would typically also save to your backend/state management
-    console.log("Saving task:", updatedTask);
+
+    console.log(updatedTask);
+    let updatedTaskRes = await ApiService.updateTask(
+      updatedTask.id,
+      updatedTask
+    );
+    if (updatedTaskRes.status !== 200) {
+      alert("Failed to update task. Please try again later.");
+      console.log("Error updating task:", updatedTaskRes);
+      return;
+    }
+
+    console.log("Task saved:", updatedTask);
   };
 
   const handleCancel = () => {
@@ -59,9 +62,17 @@ function TaskViewer({ ...task }) {
         <Calendar className="due-date-icon" />
         <span className="due-date-label">Due Date:</span>
         <span className="due-date-value">{taskData.dueDate}</span>
-        <button className="update-button" onClick={handleEdit}>
-          Update
-        </button>
+        <div className="edit-buttons">
+          <button className="update-button" onClick={() => setIsEditing(true)}>
+            Update
+          </button>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(taskData.id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -82,10 +93,5 @@ const getStatusConfig = (status) => {
   };
   return configs[status] || configs["pending"];
 };
-
-function updateButtonHandler(click, setClick) {
-  setClick(click + 1);
-  alert("Update button clicked " + click + " Times");
-}
 
 export default TaskViewer;

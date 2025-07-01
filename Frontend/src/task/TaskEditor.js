@@ -1,34 +1,6 @@
 import React, { useState } from "react";
-import {
-  Calendar,
-  CheckCircle,
-  Clock,
-  AlertCircle,
-  XCircle,
-} from "lucide-react";
-
-// Mock status configuration - adjust according to your actual implementation
-const getStatusConfig = (status) => {
-  const configs = {
-    completed: {
-      icon: CheckCircle,
-      label: "Completed",
-      className: "status-completed",
-    },
-    pending: { icon: Clock, label: "Pending", className: "status-pending" },
-    overdue: {
-      icon: AlertCircle,
-      label: "Overdue",
-      className: "status-overdue",
-    },
-    cancelled: {
-      icon: XCircle,
-      label: "Cancelled",
-      className: "status-cancelled",
-    },
-  };
-  return configs[status] || configs.pending;
-};
+import { Calendar } from "lucide-react";
+import "./tasks.css";
 
 // Editable Task Viewer Component
 function TaskEditor({ task, onSave, onCancel }) {
@@ -39,6 +11,7 @@ function TaskEditor({ task, onSave, onCancel }) {
   };
 
   const handleSave = () => {
+    console.log("edited Task: ", editedTask);
     onSave(editedTask);
   };
 

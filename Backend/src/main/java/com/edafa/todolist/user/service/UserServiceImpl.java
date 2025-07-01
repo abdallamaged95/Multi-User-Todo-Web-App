@@ -53,12 +53,22 @@ public class UserServiceImpl implements UserService {
         roles.add(roleRepo.findByRole("USER")
                 .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_NOT_FOUND, "Role User not found")));
         user.setRoles(roles);
-        return userRepo.save(user);
+        try {
+            return userRepo.save(user);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.DATABASE_ERROR, "Failed to save user: %s".formatted(user.getUsername()), e);
+        }
     }
 
     @Override
     public void deleteUser(Long id) {
-        userRepo.deleteById(id);
+        if (userRepo.findById(id).isEmpty())
+            throw new BusinessException(ErrorCode.RESOURCE_NOT_FOUND, "User not found with id: %s".formatted(id));
+        try {
+            userRepo.deleteById(id);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.DATABASE_ERROR, "Failed to delete user with id: %s".formatted(id), e);
+        }
     }
 
     @Override

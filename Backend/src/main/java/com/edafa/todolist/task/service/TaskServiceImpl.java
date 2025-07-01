@@ -53,11 +53,18 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTask(Long taskId, Task task) {
-        if (!taskRepo.findById(new TaskId(taskId, userService.getLoggedInUser().getId())).isPresent()) {
+        Optional<Task> o = taskRepo.findById(new TaskId(taskId, userService.getLoggedInUser().getId()));
+        if (o.isEmpty()) {
             throw new BusinessException(ErrorCode.RESOURCE_NOT_FOUND, "Task not found with id: %s".formatted(taskId));
         }
+        Task newTask = o.get();
+        newTask.setDescription(task.getDescription());
+        newTask.setTitle(task.getTitle());
+        newTask.setStatus(task.getStatus());
+        newTask.setDueDate(task.getDueDate());
+
         try {
-            return taskRepo.save(task);
+            return taskRepo.save(newTask);
         }
         catch(Exception e){
             throw new BusinessException(ErrorCode.DATABASE_ERROR, "Failed to update task with id: %s".formatted(taskId), e);

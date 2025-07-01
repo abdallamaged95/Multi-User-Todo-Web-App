@@ -8,6 +8,7 @@
     <include file="db/changelog/01-tables.xml"/>
     <include file="db/changelog/02-constraints.xml"/>
     <include file="db/changelog/03-indexes-sequences.xml"/>
-    <include file="db/changelog/04-init-user.xml"/>
+    <include file="db/changelog/04-init-roles.xml"/>
+<!--    <include file="db/changelog/05-init-user.xml"/>-->
 
 </databaseChangeLog>

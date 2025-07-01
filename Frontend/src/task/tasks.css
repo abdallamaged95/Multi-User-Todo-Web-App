@@ -1,0 +1,252 @@
+/* TaskViewer.css */
+
+.task-viewer {
+  max-width: 1000px;
+  /* margin: 0 5; */
+  margin-bottom: 20px;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(111, 0, 255, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #6335b3;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.task-editor {
+  max-width: 1000px;
+  margin-bottom: 20px;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(111, 0, 255, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #6335b3;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.task-viewer.task-editor {
+  border-color: #6335b3;
+  border-width: 2px;
+}
+
+.task-header {
+  display: flex;
+  font-family: monospace;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.task-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+  flex: 1;
+  margin-right: 1rem;
+  margin: 0;
+}
+
+.task-title-input {
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+.task-title-input:focus {
+  outline: none;
+  border-color: #6335b3;
+  background: white;
+}
+
+.task-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid;
+}
+
+.task-status-select {
+  min-width: 120px;
+}
+
+.status-select {
+  padding: 6px 12px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+  font-size: 0.875rem;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #007bff;
+  background: white;
+}
+
+.status-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.status-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-completed {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #059669;
+}
+
+.status-pending {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+  color: #4b5563;
+}
+
+.task-description-section {
+  font-family: monospace;
+  font-size: 15px;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0;
+}
+
+.task-description {
+  color: #4b5563;
+  line-height: 1.625;
+  margin: 0;
+}
+
+.task-description-input {
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  background: #f9f9f9;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.625;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.task-description-input:focus {
+  outline: none;
+  border-color: #007bff;
+  background: white;
+}
+
+.task-due-date {
+  font-family: monospace;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+}
+
+.due-date-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.due-date-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.due-date-value {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.due-date-input {
+  padding: 6px 8px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.due-date-input:focus {
+  outline: none;
+  border-color: #007bff;
+  background: white;
+}
+
+.update-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-left: auto;
+}
+
+.update-button:hover,
+.save-button:hover {
+  background: #0056b3;
+}
+
+.save-button,
+.cancel-button,
+.delete-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-left: 8px;
+}
+
+.edit-buttons {
+  display: flex;
+  margin-left: auto;
+}
+
+.save-button:hover {
+  background: #0056b3;
+}
+
+.cancel-button {
+  background: #6c757d;
+}
+
+.cancel-button:hover {
+  background: #545b62;
+}
+
+.delete-button {
+  background-color: #dc2626;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}

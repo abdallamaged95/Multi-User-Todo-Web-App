@@ -5,18 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="init-roles" author="abdalla maged">
-        <comment>Initialize the roles table with default roles</comment>
-        <insert tableName="ROLES">
-            <column name="ID" valueNumeric="1"/>
-            <column name="ROLE" value="USER"/>
-        </insert>
-        <insert tableName="ROLES">
-            <column name="ID" valueNumeric="2"/>
-            <column name="ROLE" value="ADMIN"/>
-        </insert>
-    </changeSet>
-
 
     <changeSet id="init-user1" author="abdalla maged">
         <comment>Initialize the user table with default admin user</comment>

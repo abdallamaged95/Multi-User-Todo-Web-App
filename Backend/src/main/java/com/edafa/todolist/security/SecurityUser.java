@@ -20,9 +20,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getPassword() {
-//        return user.getPassword();
-        return ""; // Assuming password is not stored in plain text
-//        return null;
+        return user.getPassword();
     }
 
     @Override

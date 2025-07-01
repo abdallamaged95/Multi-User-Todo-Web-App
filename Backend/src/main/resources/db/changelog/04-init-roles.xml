@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="init-roles" author="abdalla maged">
+        <comment>Initialize the roles table with default roles</comment>
+        <insert tableName="ROLES">
+            <column name="ID" valueNumeric="1"/>
+            <column name="ROLE" value="USER"/>
+        </insert>
+        <insert tableName="ROLES">
+            <column name="ID" valueNumeric="2"/>
+            <column name="ROLE" value="ADMIN"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
