@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
 import TaskViewer from "./task/TaskViewer.js";
 import "./index.css";
